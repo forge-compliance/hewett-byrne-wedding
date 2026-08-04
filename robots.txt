@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /login.html
+Sitemap: https://hewett-byrne-wedding.co.uk/sitemap.xml
