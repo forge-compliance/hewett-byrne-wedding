@@ -15,7 +15,6 @@ img{max-width:100%}
 .links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .links a{text-decoration:none;color:var(--muted);font-size:14px}
 .links .nav-cta{background:var(--deep);color:#fff;padding:9px 13px;border-radius:999px}
-background-image: url("assets/images/bucklers-hard-hero.jpg");
 .menu{display:none;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 11px;font-size:18px}
 .hero{min-height:76vh;display:grid;place-items:center;text-align:center;padding:70px 20px;background:
  radial-gradient(circle at 12% 10%,#f0dfe4 0,transparent 32%),
