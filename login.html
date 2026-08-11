@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Planning Login | Jo & Gary</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+<a class="brand" href="index.html">Jo & Gary</a>
+<a class="btn light" href="index.html">Back to website</a>
+</div></nav>
+
+<header class="hero small planning-login-hero">
+<div class="planning-login-wrap">
+<div class="eyebrow">Private wedding planning</div>
+<h1>Planning <span class="amp">Login</span></h1>
+<p>Private access for our wedding planning area.</p>
+
+<form id="planningLoginForm" class="card planning-login-card" autocomplete="on">
+  <div class="field">
+    <label for="planningUsername">Username</label>
+    <input id="planningUsername" name="username" autocomplete="username" required>
+  </div>
+  <div class="field">
+    <label for="planningPassword">Password</label>
+    <input id="planningPassword" name="password" type="password" autocomplete="current-password" required>
+  </div>
+  <button class="btn" type="submit">Open planning area</button>
+  <div id="planningLoginMessage" class="small planning-login-message" aria-live="polite"></div>
+</form>
+
+<div class="actions">
+<a class="btn light" href="index.html">Return home</a>
+</div>
+</div>
+</header>
+
+<footer class="footer"><b>Hewett-Byrne Wedding</b><br>
+<span class="small">hewett-byrne-wedding.co.uk</span></footer>
+
+<script>
+(() => {
+  const AUTH_KEY = 'hewettPlanningAuth';
+  const USER_HASH = '6e49a32ec5be89a344ff36394a1140c89b0397732fe5ad210766ce2e865a63db';
+  const PASS_HASH = 'b8e302a4f691b059de8877a2e4d056868bcd1e474bdb044a8da61cdf760d5cf6';
+
+  async function sha256(value) {
+    const data = new TextEncoder().encode(String(value));
+    const digest = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  if (sessionStorage.getItem(AUTH_KEY) === '1') {
+    location.replace('private/');
+    return;
+  }
+
+  const form = document.getElementById('planningLoginForm');
+  const message = document.getElementById('planningLoginMessage');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    message.textContent = 'Checking…';
+
+    const username = document.getElementById('planningUsername').value.trim();
+    const password = document.getElementById('planningPassword').value;
+
+    const [u, p] = await Promise.all([sha256(username), sha256(password)]);
+
+    if (u === USER_HASH && p === PASS_HASH) {
+      sessionStorage.setItem(AUTH_KEY, '1');
+      location.replace('private/');
+    } else {
+      message.textContent = 'Username or password not recognised.';
+      document.getElementById('planningPassword').value = '';
+      document.getElementById('planningPassword').focus();
+    }
+  });
+})();
+</script>
+<script src="assets/script.js"></script>
+</body>
+</html>
