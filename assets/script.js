@@ -121,29 +121,390 @@ if(datePicker){
     }
   });
 
+    function detectDelimiter(text){
+    const firstLine = String(text || '').split(/\r?\n/)[0] || '';
+
+    const candidates = [',', ';', '\t'];
+    let best = ',';
+    let bestCount = -1;
+
+    candidates.forEach(delimiter => {
+      const count = firstLine.split(delimiter).length - 1;
+      if(count > bestCount){
+        bestCount = count;
+        best = delimiter;
+      }
+    });
+
+    return best;
+  }
+
   function parseCsv(text){
+    text = String(text || '')
+      .replace(/^\uFEFF/, '')
+      .replace(/\u00A0/g, ' ');
+
+    const delimiter = detectDelimiter(text);
+
     const rows = [];
-    let row = [], field = '', quoted = false;
+    let row = [];
+    let field = '';
+    let quoted = false;
+
     for(let i = 0; i < text.length; i++){
       const ch = text[i];
+
       if(quoted){
         if(ch === '"' && text[i + 1] === '"'){
-          field += '"'; i++;
+          field += '"';
+          i++;
         } else if(ch === '"'){
           quoted = false;
         } else {
           field += ch;
         }
       } else {
-        if(ch === '"') quoted = true;
-        else if(ch === ','){ row.push(field); field = ''; }
-        else if(ch === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
-        else if(ch !== '\r') field += ch;
+        if(ch === '"'){
+          quoted = true;
+        } else if(ch === delimiter){
+          row.push(field);
+          field = '';
+        } else if(ch === '\n'){
+          row.push(field);
+          rows.push(row);
+          row = [];
+          field = '';
+        } else if(ch !== '\r'){
+          field += ch;
+        }
       }
     }
-    if(field.length || row.length){ row.push(field); rows.push(row); }
+
+    if(field.length || row.length){
+      row.push(field);
+      rows.push(row);
+    }
+
     return rows;
   }
+
+  function normaliseHeader(value){
+    return String(value || '')
+      .replace(/^\uFEFF/, '')
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+  }
+
+  function findColumn(headers, possibilities){
+    for(const name of possibilities){
+      const index = headers.indexOf(normaliseHeader(name));
+      if(index !== -1) return index;
+    }
+    return -1;
+  }
+
+  document.getElementById('importGuests')?.addEventListener('click', () => {
+    const input = document.getElementById('importGuestsFile');
+
+    if(input){
+      input.value = '';
+      input.click();
+    }
+  });
+
+  document.getElementById('importGuestsFile')?.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if(!file) return;
+
+    const message = document.getElementById('guestImportMessage');
+
+    if(message){
+      message.textContent = 'Reading guest list...';
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = event => {
+      try {
+        const text = String(event.target.result || '')
+          .replace(/^\uFEFF/, '');
+
+        const rows = parseCsv(text);
+
+        if(rows.length < 2){
+          throw new Error('No guest rows found in the CSV.');
+        }
+
+        const headers = rows[0].map(normaliseHeader);
+
+        console.log('Guest import headers:', headers);
+        console.log('First CSV row:', rows[0]);
+
+        /*
+          Accept both our website CSV:
+
+          Name, Category, RSVP, Party, Notes
+
+          AND the larger grouped wedding spreadsheet CSV:
+
+          Invitation Group, First Name, Last Name,
+          Side, Family / Social Group, Guest Type etc.
+        */
+
+        const nameCol = findColumn(headers, [
+          'Name',
+          'Guest Name',
+          'Full Name'
+        ]);
+
+        const firstNameCol = findColumn(headers, [
+          'First Name',
+          'Firstname',
+          'Forename'
+        ]);
+
+        const lastNameCol = findColumn(headers, [
+          'Last Name',
+          'Lastname',
+          'Surname'
+        ]);
+
+        const categoryCol = findColumn(headers, [
+          'Category',
+          'Guest Type',
+          'GuestType',
+          'Type'
+        ]);
+
+        const rsvpCol = findColumn(headers, [
+          'RSVP',
+          'RSVP Status',
+          'Status'
+        ]);
+
+        const partyCol = findColumn(headers, [
+          'Party',
+          'Party / Household',
+          'Household',
+          'Invitation Group',
+          'InvitationGroup'
+        ]);
+
+        const notesCol = findColumn(headers, [
+          'Notes',
+          'Note'
+        ]);
+
+        const sideCol = findColumn(headers, [
+          'Side'
+        ]);
+
+        const groupCol = findColumn(headers, [
+          'Family / Social Group',
+          'Family Group',
+          'Social Group'
+        ]);
+
+        const adultChildCol = findColumn(headers, [
+          'Adult / Child',
+          'Adult Child'
+        ]);
+
+        const dietaryCol = findColumn(headers, [
+          'Dietary Requirements',
+          'Dietary'
+        ]);
+
+        const accommodationCol = findColumn(headers, [
+          'Accommodation'
+        ]);
+
+        const transportCol = findColumn(headers, [
+          'Transport'
+        ]);
+
+        const plusOneCol = findColumn(headers, [
+          'Plus One',
+          'PlusOne'
+        ]);
+
+        if(nameCol === -1 && firstNameCol === -1){
+          throw new Error(
+            'Could not find a Name or First Name column. Found: ' +
+            rows[0].join(' | ')
+          );
+        }
+
+        const imported = [];
+
+        rows.slice(1).forEach(row => {
+
+          if(!row.some(v => String(v || '').trim())){
+            return;
+          }
+
+          let name = '';
+
+          if(nameCol !== -1){
+            name = String(row[nameCol] || '').trim();
+          } else {
+            const first = firstNameCol !== -1
+              ? String(row[firstNameCol] || '').trim()
+              : '';
+
+            const last = lastNameCol !== -1
+              ? String(row[lastNameCol] || '').trim()
+              : '';
+
+            name = `${first} ${last}`.trim();
+          }
+
+          if(!name) return;
+
+          let category = categoryCol !== -1
+            ? String(row[categoryCol] || '').trim()
+            : 'Main';
+
+          if(category.toLowerCase() === 'day'){
+            category = 'Main';
+          }
+
+          if(category.toLowerCase().includes('evening')){
+            category = 'Evening';
+          }
+
+          if(!['Main', 'Evening', 'Night'].includes(category)){
+            category = 'Main';
+          }
+
+          let rsvp = rsvpCol !== -1
+            ? String(row[rsvpCol] || '').trim()
+            : 'Awaiting reply';
+
+          const rsvpLower = rsvp.toLowerCase();
+
+          if(!rsvp || rsvpLower === 'pending'){
+            rsvp = 'Awaiting reply';
+          } else if(
+            rsvpLower === 'yes' ||
+            rsvpLower === 'accepted' ||
+            rsvpLower === 'attending'
+          ){
+            rsvp = 'Accepted';
+          } else if(
+            rsvpLower === 'no' ||
+            rsvpLower === 'declined' ||
+            rsvpLower === 'not attending'
+          ){
+            rsvp = 'Declined';
+          } else if(
+            !['Awaiting reply', 'Accepted', 'Declined'].includes(rsvp)
+          ){
+            rsvp = 'Awaiting reply';
+          }
+
+          const party = partyCol !== -1
+            ? String(row[partyCol] || '').trim()
+            : '';
+
+          const noteParts = [];
+
+          if(notesCol !== -1 && row[notesCol]){
+            noteParts.push(String(row[notesCol]).trim());
+          }
+
+          if(sideCol !== -1 && row[sideCol]){
+            noteParts.push(`Side: ${String(row[sideCol]).trim()}`);
+          }
+
+          if(groupCol !== -1 && row[groupCol]){
+            noteParts.push(`Group: ${String(row[groupCol]).trim()}`);
+          }
+
+          if(adultChildCol !== -1 && row[adultChildCol]){
+            noteParts.push(String(row[adultChildCol]).trim());
+          }
+
+          if(plusOneCol !== -1 && row[plusOneCol]){
+            noteParts.push(`Plus one: ${String(row[plusOneCol]).trim()}`);
+          }
+
+          if(dietaryCol !== -1 && row[dietaryCol]){
+            noteParts.push(`Dietary: ${String(row[dietaryCol]).trim()}`);
+          }
+
+          if(accommodationCol !== -1 && row[accommodationCol]){
+            noteParts.push(
+              `Accommodation: ${String(row[accommodationCol]).trim()}`
+            );
+          }
+
+          if(transportCol !== -1 && row[transportCol]){
+            noteParts.push(
+              `Transport: ${String(row[transportCol]).trim()}`
+            );
+          }
+
+          imported.push({
+            name,
+            category,
+            rsvp,
+            party,
+            notes: noteParts.filter(Boolean).join(' | ')
+          });
+        });
+
+        if(!imported.length){
+          throw new Error('No valid named guests were found.');
+        }
+
+        if(
+          guests.length &&
+          !confirm(
+            `This will replace the ${guests.length} guests already saved on this device with ${imported.length} imported guests. Continue?`
+          )
+        ){
+          e.target.value = '';
+          return;
+        }
+
+        guests = imported;
+
+        save();
+        render();
+
+        if(message){
+          message.textContent =
+            `${imported.length} guests imported successfully and saved on this device.`;
+        }
+
+        console.log('Imported guests:', imported);
+
+      } catch(err){
+
+        console.error('Guest import error:', err);
+
+        if(message){
+          message.textContent =
+            `Import failed: ${err.message}`;
+        }
+      }
+
+      e.target.value = '';
+    };
+
+    reader.onerror = () => {
+      if(message){
+        message.textContent =
+          'Import failed: The browser could not read that file.';
+      }
+
+      e.target.value = '';
+    };
+
+    reader.readAsText(file, 'UTF-8');
+  });
 
   document.getElementById('importGuests')?.addEventListener('click', () => {
     document.getElementById('importGuestsFile')?.click();
