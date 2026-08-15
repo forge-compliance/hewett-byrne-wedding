@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Guest Manager | Jo & Gary</title><link rel="stylesheet" href="../assets/style.css"><meta name="robots" content="noindex,nofollow"></head><body>
+<div class="private-banner">PRIVATE PLANNING · GUEST MANAGER</div><nav class="nav"><div class="nav-inner"><a class="brand" href="index.html">Jo & Gary Planning</a><div style="display:flex;gap:10px"><a class="btn light" href="index.html">← Dashboard</a><button class="btn alt" id="planningLogout">Log out</button></div></div></nav><main><section class="section">
+  <h2>Guest list</h2>
+  <p class="lede">Live guest list from Supabase. Guest RSVP changes appear here automatically when the page is refreshed.</p>
+
+  <div class="grid cols-3" style="margin-bottom:18px">
+    <div class="card metric"><span>Main guests</span><strong id="mainCount">0</strong></div>
+    <div class="card metric"><span>Evening guests</span><strong id="eveningCount">0</strong></div>
+    <div class="card metric"><span>Night guests</span><strong id="nightCount">0</strong></div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px">
+  <div class="form-grid">
+    <div class="field full"><label for="guestSearch">Search guests</label><input id="guestSearch" placeholder="Name, household, RSVP code, group or notes"></div>
+    <div class="field"><label for="guestTypeFilter">Invitation</label><select id="guestTypeFilter"><option value="">All</option><option value="Day">Day</option><option value="Evening">Evening</option></select></div>
+    <div class="field"><label for="guestRsvpFilter">RSVP</label><select id="guestRsvpFilter"><option value="">All</option><option>Awaiting reply</option><option>Accepted</option><option>Declined</option></select></div>
+    <div class="field"><label for="guestSideFilter">Side</label><select id="guestSideFilter"><option value="">All</option><option>Jo</option><option>Gary</option><option>Joint</option><option>Couple</option><option>Joint / Check</option></select></div>
+    <div class="field"><label>Showing</label><div class="card metric" style="padding:10px"><strong id="shownGuestCount">0</strong><span>guests</span></div></div>
+  </div>
+</div>
+<div class="card">
+    <form id="guestForm" class="form-grid">
+      <div class="field">
+        <label for="guestName">Guest name</label>
+        <input id="guestName" required>
+      </div>
+      <div class="field">
+        <label for="guestCategory">Category</label>
+        <select id="guestCategory" required>
+          <option value="Main">Main</option>
+          <option value="Evening">Evening</option>
+          <option value="Night">Night</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="guestRsvp">RSVP status</label>
+        <select id="guestRsvp">
+          <option value="Awaiting reply">Awaiting reply</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Declined">Declined</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="guestParty">Party / household</label>
+        <input id="guestParty" placeholder="Optional">
+      </div>
+      <div class="field full">
+        <label for="guestNotes">Notes</label>
+        <textarea id="guestNotes" placeholder="Dietary needs, hotel, transport, children, plus-one details..."></textarea>
+      </div>
+      <div class="field full">
+        <button class="btn" type="submit">Add guest</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="actions" style="justify-content:flex-start">
+    <button class="btn alt" type="button" id="exportGuests">Download guest list CSV</button>
+    <button class="btn light" type="button" id="clearGuests">Clear guest list</button>
+  </div>
+  <p class="small" id="guestImportMessage" style="margin-top:10px"></p>
+
+  <div class="table-wrap">
+    <table id="guestTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>RSVP</th>
+          <th>Household / RSVP Code</th>
+          <th>Notes</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section></main><footer class="footer"><b>Jo & Gary Guest Manager</b></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../assets/supabase-config.js"></script><script src="../assets/script.js"></script></body></html>
