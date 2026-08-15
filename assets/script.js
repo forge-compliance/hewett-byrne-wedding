@@ -10,7 +10,11 @@ if(privateDate){privateDate.value=localStorage.getItem('hewettWeddingDate')||'20
 document.querySelectorAll('[data-save-check]').forEach(el=>{const k='hewettCheck_'+el.dataset.saveCheck;el.checked=localStorage.getItem(k)==='1';el.addEventListener('change',()=>localStorage.setItem(k,el.checked?'1':'0'))});
 
 const loginForm=document.getElementById('planningLoginForm');
-if(loginForm&&window.weddingSupabase){const msg=document.getElementById('planningLoginMessage');weddingSupabase.auth.getSession().then(({data})=>{if(data.session)location.replace('private/')});loginForm.addEventListener('submit',async e=>{e.preventDefault();msg.textContent='Checking…';const {error}=await weddingSupabase.auth.signInWithPassword({email:document.getElementById('planningEmail').value.trim(),password:document.getElementById('planningPassword').value});if(error){msg.textContent='Email or password not recognised.';return}location.replace('private/')})}
+if(loginForm&&window.weddingSupabase){const msg=document.getElementById('planningLoginMessage');weddingSupabase.auth.getSession().then(({data})=>{if(data.session)location.replace('private/')});loginForm.addEventListener('submit',async e=>{e.preventDefault();msg.textContent='Checking…';const {error}=await weddingSupabase.auth.signInWithPassword({email:document.getElementById('planningEmail').value.trim(),password:document.getElementById('planningPassword').value});if(error){
+  console.error('Supabase login error:', error);
+  msg.textContent='Login failed: ' + error.message;
+  return;
+}location.replace('private/')})}
 
 (async()=>{
  const form=document.getElementById('guestForm');if(!form||!window.weddingSupabase)return;
