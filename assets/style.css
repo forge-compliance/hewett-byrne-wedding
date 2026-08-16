@@ -1,0 +1,2364 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap');
+
+:root{
+  --ink:#342f27;
+  --muted:#756c61;
+  --paper:#f7f4ef;
+  --ivory:#eee9e2;
+  --ivory-deep:#d0c5b8;
+  --green:#71614c;
+  --green-deep:#514632;
+  --gold:#9a7d49;
+  --gold-soft:#c7b79d;
+  --sage:#8d8a70;
+  --line:rgba(82,70,50,.16);
+  --shadow:0 28px 70px rgba(74,62,45,.09);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Montserrat',Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}img{display:block;max-width:100%}::selection{background:var(--gold-soft);color:var(--green-deep)}
+
+/* NAVIGATION */
+.nav{position:sticky;top:0;z-index:50;background:rgba(253,251,246,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1240px;margin:auto;padding:19px 30px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:inline-grid;place-items:center;min-width:104px;text-decoration:none;color:var(--green);font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:500;letter-spacing:.02em;line-height:1}
+.brand::after{content:'11 · IX · 27';display:block;margin-top:8px;font:500 8px/1 'Montserrat',sans-serif;letter-spacing:.28em;color:var(--gold)}
+.links{display:flex;align-items:center;gap:30px}
+.links a{text-decoration:none;text-transform:uppercase;letter-spacing:.17em;font-size:10px;font-weight:600;color:#4f574f;transition:.2s}
+.links a:hover{color:var(--gold)}
+.links .nav-cta{padding:11px 18px;border:1px solid var(--green);color:var(--green)}
+.links .nav-cta:hover{background:var(--green);color:#fff}
+.menu{display:none;width:42px;height:42px;background:transparent;border:1px solid var(--line);font-size:17px;color:var(--green)}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;isolation:isolate;min-height:84vh;display:grid;place-items:center;text-align:center;padding:120px 26px 100px;background:var(--green-deep);color:#fff}
+.hero::before{content:'';position:absolute;inset:22px;z-index:-1;border:1px solid rgba(216,196,155,.38);pointer-events:none}
+.hero::after{content:'J  &  G';position:absolute;left:50%;top:46px;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:18px;letter-spacing:.34em;color:var(--gold-soft);white-space:nowrap}
+.hero>div{max-width:960px}
+.hero.small{min-height:52vh;padding:110px 26px 85px}
+.eyebrow{text-transform:uppercase;letter-spacing:.32em;font-size:9px;font-weight:600;color:var(--gold-soft)}
+.hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(82px,12vw,150px);font-weight:400;line-height:.78;letter-spacing:-.035em;margin:30px 0 28px;color:#fff}
+.hero.small h1{font-size:clamp(62px,8vw,100px)}
+.amp{font-style:italic;color:var(--gold-soft);font-weight:400}
+.hero p{max-width:690px;margin:0 auto;color:rgba(255,255,255,.74);font-size:15px;line-height:1.9}
+.pill{display:inline-block;margin-top:28px;padding:0;border:0;background:none;color:var(--gold-soft);font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:.04em}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);max-width:610px;margin:40px auto 0;border-top:1px solid rgba(216,196,155,.3);border-bottom:1px solid rgba(216,196,155,.3)}
+.count{padding:19px 18px;border-right:1px solid rgba(216,196,155,.22)}.count:last-child{border-right:0}
+.count strong{display:block;font-family:'Cormorant Garamond',serif;font-size:39px;font-weight:400;line-height:1;color:#fff}
+.count span{display:block;margin-top:7px;text-transform:uppercase;letter-spacing:.24em;font-size:8px;color:rgba(255,255,255,.5)}
+.actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:38px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:45px;padding:12px 22px;border:1px solid var(--green);border-radius:0;background:var(--green);color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-size:10px;font-weight:600;cursor:pointer;transition:.22s}
+.btn:hover{background:var(--green-deep);border-color:var(--green-deep)}
+.hero .btn{background:var(--gold-soft);border-color:var(--gold-soft);color:var(--green-deep)}
+.hero .btn:hover{background:#ead9b8;border-color:#ead9b8}
+.btn.alt{background:transparent;color:#fff;border-color:rgba(255,255,255,.42)}
+.btn.alt:hover{background:#fff;color:var(--green-deep)}
+.btn.light{background:transparent;color:var(--green);border-color:var(--line)}
+.btn.light:hover{border-color:var(--gold);color:var(--gold)}
+
+/* CONTENT */
+main{max-width:1160px;margin:auto;padding:0 26px 100px}
+.section{padding:86px 0}.section+.section{border-top:1px solid var(--line)}
+.section h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(48px,6vw,70px);font-weight:400;line-height:.95;letter-spacing:-.025em;color:var(--green);margin:0 0 20px}
+.section h2::after{content:'';display:block;width:72px;height:1px;background:var(--gold);margin-top:24px}
+.section h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:31px;font-weight:500;line-height:1.05;color:var(--green);margin:8px 0 14px}
+.lede{max-width:780px;color:var(--muted);font-size:15px;line-height:1.9;margin:0 0 34px}
+.home-intro{text-align:center;max-width:1040px;margin:auto}.home-intro h2::after{margin-left:auto;margin-right:auto}.home-intro .lede{margin-left:auto;margin-right:auto}
+.grid{display:grid;gap:22px}.cols-3{grid-template-columns:repeat(3,1fr)}.cols-2{grid-template-columns:repeat(2,1fr)}
+.card{position:relative;background:transparent;border:1px solid var(--line);border-radius:0;padding:34px 32px;box-shadow:none;overflow:hidden}
+.card::before{content:'';position:absolute;left:27px;top:0;width:48px;height:1px;background:var(--gold)}
+.card p:last-child{margin-bottom:0}
+.card a:not(.btn){color:var(--green);font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold-soft);padding-bottom:2px}
+.icon{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;letter-spacing:.08em;color:var(--gold);width:auto;height:auto;background:none;border-radius:0;margin-bottom:20px}
+.metric strong{display:block;font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;color:var(--green);line-height:1}
+.metric span:first-child{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.2em;font-weight:600;margin-bottom:10px}
+.notice{padding:22px 26px;border:1px solid var(--line);border-left:2px solid var(--gold);background:var(--ivory);border-radius:0}.notice.ok{background:var(--ivory)}
+
+/* TIMELINE */
+.timeline{display:grid;gap:0;padding:0;border-top:1px solid var(--line)}
+.timeline-item{display:grid;grid-template-columns:130px 1fr;gap:34px;padding:28px 0;border-bottom:1px solid var(--line)}
+.timeline-time{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold)}
+.timeline-item b{font-family:'Cormorant Garamond',serif;font-size:25px;color:var(--green)}
+
+/* FORMS + TABLES */
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:0;background:#fff;box-shadow:none}
+table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:15px 13px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}th{background:var(--ivory);color:var(--green);font-size:9px;text-transform:uppercase;letter-spacing:.16em}td:first-child,th:first-child{text-align:left}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.field{display:grid;gap:8px}.field.full{grid-column:1/-1}label{font-weight:600;color:var(--green);font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+input,select,textarea{width:100%;padding:14px 0;border:0;border-bottom:1px solid #bdb7aa;border-radius:0;background:transparent;font:inherit;color:var(--ink);outline:none;transition:.18s}input:focus,select:focus,textarea:focus{border-bottom-color:var(--gold);box-shadow:none}textarea{min-height:110px;resize:vertical}
+#rsvpLookupForm{max-width:620px;margin:auto}.rsvp-person h3{font-size:38px}
+
+/* CHECKLIST */
+.check,.check-row{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border:0;border-bottom:1px solid var(--line);background:transparent;border-radius:0}.check input,.check-row input{width:auto;margin-top:5px;accent-color:var(--green)}.checklist{display:grid}
+
+/* FAQ */
+.accordion{border-bottom:1px solid var(--line)}.accordion button{width:100%;padding:24px 0;background:none;border:0;text-align:left;font:inherit;font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;color:var(--green);display:flex;justify-content:space-between;cursor:pointer}.accordion button span{color:var(--gold);font-size:22px}.answer{display:none;padding:0 50px 24px 0;color:var(--muted)}.accordion.open .answer{display:block}
+
+/* PRIVATE */
+.private-banner{background:var(--green-deep);color:var(--gold-soft);padding:10px;text-align:center;font-size:9px;text-transform:uppercase;letter-spacing:.2em}.private-banner+.nav{position:sticky;top:0}
+
+/* FOOTER */
+.footer{text-align:center;padding:76px 20px 68px;border-top:1px solid rgba(216,196,155,.18);background:var(--green-deep);color:rgba(255,255,255,.56)}
+.footer::before{content:'J  &  G';display:block;font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;letter-spacing:.17em;color:var(--gold-soft);margin-bottom:16px}.footer b{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff}.footer .small{color:rgba(255,255,255,.42)}.small{font-size:11px;color:var(--muted)}
+
+/* LOGIN */
+.planning-login-wrap{width:min(100%,620px);margin:auto}.planning-login-card{max-width:440px;margin:34px auto 0;text-align:left;background:var(--paper);color:var(--ink)}.planning-login-card .btn{width:100%;margin-top:8px}.planning-login-message{min-height:21px;margin-top:10px;text-align:center}.planning-login-hero{min-height:76vh}
+
+@media(prefers-reduced-motion:no-preference){.hero>div{animation:fadeUp .7s ease both}.card{transition:border-color .2s,transform .2s}.section .card:hover{border-color:rgba(168,134,77,.52);transform:translateY(-2px)}@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}
+@media(max-width:900px){.cols-3{grid-template-columns:1fr 1fr}.links{gap:18px}.hero h1{font-size:clamp(76px,15vw,120px)}}
+@media(max-width:820px){.cols-3,.cols-2,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.nav-inner{padding:15px 18px}.links{display:none;position:absolute;top:72px;left:12px;right:12px;background:var(--paper);padding:18px;border:1px solid var(--line);gap:0}.links.open{display:grid}.links a{padding:13px 5px;border-bottom:1px solid var(--line)}.links a:last-child{border-bottom:0}.links .nav-cta{margin-top:8px;text-align:center}.menu{display:grid;place-items:center}.countdown{grid-template-columns:repeat(2,1fr);max-width:390px}.count:nth-child(2){border-right:0}.count:nth-child(-n+2){border-bottom:1px solid rgba(216,196,155,.22)}.timeline-item{grid-template-columns:1fr;gap:4px}.hero{min-height:76vh;padding:105px 20px 78px}.hero.small{min-height:46vh;padding:96px 20px 70px}.hero::before{inset:13px}main{padding-inline:18px}.section{padding:60px 0}}
+@media(max-width:520px){.hero h1{font-size:clamp(68px,21vw,92px)}.hero.small h1{font-size:clamp(54px,17vw,76px)}.hero p{font-size:14px}.card{padding:27px 22px}.section h2{font-size:46px}.nav-inner{padding-inline:14px}.brand{font-size:25px}}
+@media print{.nav,.actions,.btn,.menu{display:none!important}.section{padding:24px 0}.hero{min-height:auto;background:#fff;color:#000}.hero h1,.hero p{color:#000}}
+
+/* =========================================================
+   HOME INVITATION REVEAL
+   ========================================================= */
+.invitation-reveal{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(168,134,77,.08), transparent 30%),
+    #f7f2e8;
+  animation:revealCurtain 4.7s ease forwards;
+}
+.reveal-stage{
+  position:relative;
+  width:min(760px,92vw);
+  height:min(540px,72vh);
+  display:grid;
+  place-items:end center;
+  perspective:1400px;
+}
+.envelope{
+  position:absolute;
+  left:50%;
+  bottom:6%;
+  width:min(620px,84vw);
+  aspect-ratio:1.62/1;
+  transform:translateX(-50%);
+  filter:drop-shadow(0 34px 50px rgba(53,45,32,.16));
+}
+.envelope-back,
+.envelope-front,
+.envelope-flap{
+  position:absolute;
+  inset:0;
+}
+.envelope-back{
+  background:#eee3cf;
+  border:1px solid rgba(91,74,49,.18);
+}
+.envelope-front{
+  z-index:4;
+  overflow:hidden;
+}
+.envelope-front::before,
+.envelope-front::after{
+  content:'';
+  position:absolute;
+  bottom:-2px;
+  width:72%;
+  height:88%;
+  background:#f4ead8;
+  border-top:1px solid rgba(91,74,49,.12);
+}
+.envelope-front::before{
+  left:-9%;
+  clip-path:polygon(0 100%,0 15%,100% 100%);
+}
+.envelope-front::after{
+  right:-9%;
+  clip-path:polygon(100% 100%,100% 15%,0 100%);
+}
+.envelope-flap{
+  z-index:5;
+  height:58%;
+  transform-origin:50% 0;
+  background:#e9ddc7;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  animation:openFlap 1.05s cubic-bezier(.65,0,.35,1) .45s forwards;
+  border-top:1px solid rgba(91,74,49,.16);
+}
+.wax-seal{
+  position:absolute;
+  z-index:7;
+  left:50%;
+  top:48%;
+  width:62px;
+  height:62px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#8f2725;
+  color:#f1dfc1;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 8px 18px rgba(74,20,18,.22), inset 0 0 0 5px rgba(255,255,255,.05);
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  letter-spacing:.02em;
+  animation:sealRelease .4s ease .5s forwards;
+}
+.wax-seal span{font-style:italic;font-size:.78em;margin:0 1px}
+.reveal-card{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  bottom:11%;
+  width:min(510px,72vw);
+  min-height:350px;
+  padding:56px 42px 46px;
+  transform:translate(-50%,24%);
+  text-align:center;
+  color:#f9f4ea;
+  background:#17332b;
+  border:1px solid rgba(216,196,155,.46);
+  outline:1px solid rgba(216,196,155,.25);
+  outline-offset:-12px;
+  box-shadow:0 26px 50px rgba(20,42,34,.25);
+  animation:cardRise 1.45s cubic-bezier(.22,.82,.24,1) 1.15s forwards;
+}
+.reveal-monogram{
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:.25em;
+  color:#d8c49b;
+  font-size:19px;
+}
+.reveal-monogram span{font-style:italic}
+.reveal-rule{width:58px;height:1px;background:#a8864d;margin:20px auto 24px}
+.reveal-kicker,.reveal-date,.reveal-place{
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  font-size:8px;
+  color:rgba(255,255,255,.62);
+}
+.reveal-names{
+  margin:22px 0 20px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(58px,9vw,86px);
+  line-height:.82;
+  font-weight:400;
+}
+.reveal-names em{color:#d8c49b;font-weight:400}
+.reveal-date{color:#d8c49b;margin-bottom:12px}
+
+@keyframes openFlap{
+  0%{transform:rotateX(0deg)}
+  100%{transform:rotateX(-178deg);z-index:1}
+}
+@keyframes sealRelease{
+  to{opacity:0;transform:translate(-50%,-63%) scale(.84)}
+}
+@keyframes cardRise{
+  0%{transform:translate(-50%,24%)}
+  68%{transform:translate(-50%,-56%)}
+  100%{transform:translate(-50%,-46%)}
+}
+@keyframes revealCurtain{
+  0%,78%{opacity:1;visibility:visible}
+  100%{opacity:0;visibility:hidden;pointer-events:none}
+}
+
+/* HOME HERO: invitation card on ivory, rather than a full green block */
+.home-hero{
+  min-height:auto;
+  padding:86px 24px 96px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(168,134,77,.08), transparent 28%),
+    var(--paper);
+  color:var(--ink);
+}
+.home-hero::before{
+  inset:26px;
+  border-color:rgba(168,134,77,.22);
+}
+.home-hero::after{display:none}
+.hero-invitation{
+  position:relative;
+  width:min(820px,92vw);
+  max-width:none!important;
+  margin:auto;
+  padding:82px 72px 68px;
+  color:#fff;
+  background:var(--green-deep);
+  border:1px solid rgba(216,196,155,.48);
+  outline:1px solid rgba(216,196,155,.24);
+  outline-offset:-15px;
+  box-shadow:0 40px 95px rgba(29,45,36,.18);
+}
+.hero-invitation::before,
+.hero-invitation::after{
+  content:'';
+  position:absolute;
+  width:42px;height:42px;
+  opacity:.65;
+}
+.hero-invitation::before{
+  left:25px;top:25px;
+  border-left:1px solid var(--gold-soft);
+  border-top:1px solid var(--gold-soft);
+}
+.hero-invitation::after{
+  right:25px;bottom:25px;
+  border-right:1px solid var(--gold-soft);
+  border-bottom:1px solid var(--gold-soft);
+}
+.hero-invite-monogram{
+  margin-bottom:25px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;
+  letter-spacing:.32em;
+  color:var(--gold-soft);
+}
+.hero-invite-monogram span{font-style:italic}
+.home-hero h1{font-size:clamp(78px,10vw,128px)}
+.home-hero p{color:rgba(255,255,255,.74)}
+.home-hero .countdown{max-width:570px}
+.home-hero .btn.alt{color:#fff;border-color:rgba(255,255,255,.42)}
+.home-hero .btn.alt:hover{background:#fff;color:var(--green-deep)}
+
+@media(max-width:700px){
+  .invitation-reveal{animation-duration:4.35s}
+  .reveal-stage{height:64vh}
+  .reveal-card{width:76vw;min-height:300px;padding:44px 25px 36px}
+  .envelope{width:88vw}
+  .wax-seal{width:52px;height:52px;font-size:18px}
+  .hero-invitation{padding:64px 26px 54px}
+  .home-hero{padding:54px 14px 68px}
+  .home-hero::before{inset:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .invitation-reveal{display:none}
+}
+
+
+/* =========================================================
+   EXACT PALETTE UPDATE — FROM APPROVED REFERENCE IMAGE
+   warm ivory · parchment · taupe · muted gold · soft sage
+   ========================================================= */
+body{
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(199,183,157,.12), transparent 28%),
+    var(--paper);
+}
+::selection{background:#ddd2c3;color:#342f27}
+
+/* Navigation */
+.nav{
+  background:rgba(247,244,239,.96);
+  border-bottom:1px solid rgba(82,70,50,.12);
+}
+.brand{color:#3f382e}
+.brand::after{color:#9a7d49}
+.links a{color:#5e554a}
+.links a:hover{color:#8d7448}
+.links .nav-cta{
+  border-color:#a88e62;
+  color:#554a3a;
+  background:rgba(255,255,255,.35);
+}
+.links .nav-cta:hover{
+  background:#a88e62;
+  color:#fffdf9;
+}
+.menu{color:#514632;border-color:rgba(82,70,50,.18)}
+
+/* All heroes are light, paper-like and editorial */
+.hero,
+.hero.small{
+  background:
+    linear-gradient(rgba(247,244,239,.93),rgba(247,244,239,.93)),
+    radial-gradient(circle at 50% 20%, rgba(199,183,157,.28), transparent 34%);
+  color:var(--ink);
+}
+.hero::before{border-color:rgba(154,125,73,.28)}
+.hero::after{color:#9a7d49}
+.hero h1,
+.hero.small h1{color:#3f382e}
+.amp{color:#9a7d49}
+.hero p{color:#766d62}
+.eyebrow{color:#93794f}
+.pill{color:#8a724b}
+.countdown{
+  border-color:rgba(154,125,73,.24);
+}
+.count{border-color:rgba(154,125,73,.18)}
+.count strong{color:#4c4337}
+.count span{color:#8b8175}
+
+/* Buttons */
+.btn{
+  background:#8a744e;
+  border-color:#8a744e;
+  color:#fffdf9;
+}
+.btn:hover{
+  background:#6f5f43;
+  border-color:#6f5f43;
+}
+.hero .btn{
+  background:#8a744e;
+  border-color:#8a744e;
+  color:#fffdf9;
+}
+.hero .btn:hover{
+  background:#6f5f43;
+  border-color:#6f5f43;
+}
+.btn.alt,
+.hero .btn.alt,
+.home-hero .btn.alt{
+  background:transparent;
+  color:#554b3e;
+  border-color:#b8a98f;
+}
+.btn.alt:hover,
+.hero .btn.alt:hover,
+.home-hero .btn.alt:hover{
+  background:#eee8df;
+  color:#3f382e;
+}
+.btn.light{
+  color:#665946;
+  border-color:#c5b9a9;
+}
+.btn.light:hover{
+  color:#8a744e;
+  border-color:#9a7d49;
+}
+
+/* Content */
+.section h2,
+.section h3,
+.timeline-item b,
+label,
+.accordion button,
+.metric strong{
+  color:#4b4237;
+}
+.section h2::after,
+.card::before,
+.reveal-rule{
+  background:#9a7d49;
+}
+.lede,.small,.answer{color:#7a7166}
+.card{
+  background:rgba(255,253,249,.48);
+  border-color:rgba(82,70,50,.13);
+}
+.card a:not(.btn){color:#6d5c42;border-bottom-color:#c9b998}
+.icon,.timeline-time,.accordion button span{color:#957a4b}
+.notice,.notice.ok,th{
+  background:#eee9e2;
+  color:#4d4438;
+}
+
+/* Tables / form fields */
+.table-wrap{background:#faf8f4;border-color:rgba(82,70,50,.14)}
+input,select,textarea{
+  color:#3c362e;
+  border-bottom-color:#bcb1a3;
+}
+input:focus,select:focus,textarea:focus{border-bottom-color:#9a7d49}
+.check input,.check-row input{accent-color:#8d8a70}
+
+/* Private planner also inherits the quiet neutral palette */
+.private-banner{
+  background:#75684f;
+  color:#fffaf1;
+}
+
+/* Footer: remove the dark green slab */
+.footer{
+  background:#e7e1da;
+  color:#72695e;
+  border-top:1px solid rgba(82,70,50,.13);
+}
+.footer::before{color:#877048}
+.footer b{color:#443c32}
+.footer .small{color:#786f64}
+
+/* =========================================================
+   ENVELOPE REVEAL — FULL SCREEN, SLOWER, APPROVED PALETTE
+   ========================================================= */
+.invitation-reveal{
+  background:
+    radial-gradient(circle at 50% 32%, rgba(199,183,157,.20), transparent 36%),
+    #e7e1da;
+  animation:revealCurtain 8.2s ease forwards;
+}
+.reveal-stage{
+  width:100vw;
+  height:100vh;
+  min-height:100vh;
+  place-items:center;
+}
+.envelope{
+  bottom:2vh;
+  width:min(980px,92vw);
+  max-height:82vh;
+  filter:drop-shadow(0 34px 58px rgba(73,62,47,.18));
+}
+.envelope-back{
+  background:#d0c5b8;
+  border-color:rgba(82,70,50,.18);
+}
+.envelope-front::before,
+.envelope-front::after{
+  background:#e7e1da;
+  border-top-color:rgba(82,70,50,.12);
+}
+.envelope-flap{
+  background:#cfc4b6;
+  border-top-color:rgba(82,70,50,.14);
+  animation:openFlap 1.8s cubic-bezier(.65,0,.35,1) .8s forwards;
+}
+.wax-seal{
+  background:#9a7d49;
+  color:#f8f4ec;
+  box-shadow:
+    0 8px 18px rgba(72,56,33,.18),
+    inset 0 0 0 5px rgba(255,255,255,.06);
+  animation:sealRelease .55s ease .85s forwards;
+}
+.reveal-card{
+  width:min(650px,72vw);
+  min-height:min(650px,72vh);
+  padding:76px 60px 58px;
+  color:#3f382e;
+  background:#f7f4ef;
+  border:1px solid rgba(154,125,73,.55);
+  outline:1px solid rgba(154,125,73,.22);
+  outline-offset:-14px;
+  box-shadow:0 26px 54px rgba(77,63,43,.18);
+  animation:cardRise 3.25s cubic-bezier(.22,.82,.24,1) 2.05s forwards;
+}
+.reveal-monogram,
+.reveal-date{color:#8a744e}
+.reveal-kicker,
+.reveal-place{
+  color:#736a5f;
+}
+.reveal-names{color:#40382f}
+.reveal-names em{color:#957a4b}
+
+@keyframes cardRise{
+  0%{transform:translate(-50%,28%)}
+  72%{transform:translate(-50%,-72%)}
+  100%{transform:translate(-50%,-63%)}
+}
+@keyframes revealCurtain{
+  0%,86%{opacity:1;visibility:visible}
+  100%{opacity:0;visibility:hidden;pointer-events:none}
+}
+
+/* =========================================================
+   HOME INVITATION — NO GREEN, LIKE THE APPROVED IMAGE
+   ========================================================= */
+.home-hero{
+  padding:72px 24px 92px;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(199,183,157,.19), transparent 30%),
+    #f7f4ef;
+  color:#3f382e;
+}
+.hero-invitation{
+  color:#3f382e;
+  background:
+    linear-gradient(rgba(247,244,239,.97),rgba(247,244,239,.97)),
+    radial-gradient(circle at 16% 12%, rgba(141,138,112,.10), transparent 30%);
+  border-color:rgba(154,125,73,.48);
+  outline-color:rgba(154,125,73,.18);
+  box-shadow:0 40px 95px rgba(77,63,43,.13);
+}
+.hero-invitation::before,
+.hero-invitation::after{
+  border-color:#b59b6c;
+}
+.hero-invite-monogram{color:#8c754d}
+.home-hero h1{color:#3f382e}
+.home-hero p{color:#766d62}
+.home-hero .count strong{color:#453d33}
+.home-hero .count span{color:#84796d}
+.home-hero .countdown{
+  border-color:rgba(154,125,73,.22);
+}
+.home-hero .count{
+  border-color:rgba(154,125,73,.15);
+}
+
+/* subtle botanical/sage hints rather than coloured blocks */
+.home-intro::before{
+  content:'';
+  display:block;
+  width:38px;
+  height:38px;
+  margin:0 auto 22px;
+  border:1px solid rgba(141,138,112,.42);
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 38% 58%, rgba(141,138,112,.24) 0 18%, transparent 19%),
+    radial-gradient(ellipse at 62% 42%, rgba(141,138,112,.20) 0 18%, transparent 19%);
+}
+
+@media(max-width:700px){
+  .invitation-reveal{animation-duration:7.6s}
+  .reveal-stage{height:100vh;min-height:100vh}
+  .envelope{width:94vw;bottom:8vh}
+  .reveal-card{
+    width:78vw;
+    min-height:52vh;
+    padding:52px 26px 38px;
+  }
+  .home-hero{padding:52px 14px 68px}
+}
+
+
+/* =========================================================
+   STATIC STATIONERY HOMEPAGE HERO
+   Approved cream / parchment / antique gold / soft sage palette
+   No animation. No moving envelope.
+   ========================================================= */
+
+.invitation-reveal,
+.home-hero{
+  display:none !important;
+}
+
+.home-stationery-hero{
+  position:relative;
+  min-height:calc(100vh - 79px);
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 52% 18%, rgba(201,190,171,.34), transparent 31%),
+    linear-gradient(180deg,#f7f4ef 0%,#f1ece4 100%);
+  border-bottom:1px solid rgba(82,70,50,.12);
+}
+
+.stationery-scene{
+  position:relative;
+  min-height:calc(100vh - 79px);
+  max-width:1500px;
+  margin:0 auto;
+  display:grid;
+  place-items:center;
+  padding:46px 34px 62px;
+  isolation:isolate;
+}
+
+/* Soft fabric/paper hints */
+.stationery-scene::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  opacity:.72;
+  background:
+    radial-gradient(ellipse at 92% 20%, rgba(208,197,180,.34) 0 12%, transparent 13%),
+    radial-gradient(ellipse at 7% 77%, rgba(206,198,179,.20) 0 14%, transparent 15%),
+    repeating-linear-gradient(12deg, rgba(255,255,255,.10) 0 1px, transparent 1px 5px);
+}
+
+.stationery-scene::after{
+  content:'';
+  position:absolute;
+  top:4%;
+  right:-3%;
+  width:36%;
+  height:78%;
+  z-index:-2;
+  opacity:.28;
+  border-radius:50% 10% 42% 8%;
+  background:
+    linear-gradient(128deg, transparent 0 28%, rgba(194,185,170,.55) 29% 30%, transparent 31% 100%);
+  transform:rotate(-7deg);
+}
+
+/* Static envelope */
+.static-envelope{
+  position:relative;
+  width:min(980px,88vw);
+  aspect-ratio:1.50/1;
+  filter:drop-shadow(0 32px 48px rgba(79,66,47,.13));
+}
+
+.static-envelope-back{
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:7%;
+  bottom:11%;
+  z-index:0;
+  border:1px solid rgba(105,87,59,.12);
+  border-radius:52% 52% 3% 3% / 19% 19% 3% 3%;
+  background:
+    linear-gradient(180deg,#d9cdbb 0%,#e9e1d6 42%,#e8e0d5 100%);
+}
+
+.static-envelope-back::before{
+  content:'';
+  position:absolute;
+  left:9%;
+  right:9%;
+  top:-1px;
+  height:43%;
+  border-radius:50% 50% 0 0 / 16% 16% 0 0;
+  background:
+    linear-gradient(180deg,#cfc1ac 0%,#ded3c3 100%);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  opacity:.82;
+}
+
+/* Invitation itself */
+.static-invitation{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:2%;
+  width:min(650px,64vw);
+  min-height:76%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:54px 62px 68px;
+  color:#3b352c;
+  border:1px solid rgba(154,125,73,.48);
+  outline:1px solid rgba(154,125,73,.18);
+  outline-offset:-13px;
+  background:
+    radial-gradient(circle at 18% 10%,rgba(141,138,112,.055),transparent 28%),
+    radial-gradient(circle at 84% 18%,rgba(141,138,112,.045),transparent 25%),
+    #f8f5f0;
+  box-shadow:0 18px 30px rgba(76,62,44,.09);
+}
+
+.static-invitation::before,
+.static-invitation::after{
+  content:'';
+  position:absolute;
+  width:78px;
+  height:112px;
+  opacity:.42;
+  background:
+    radial-gradient(ellipse at 42% 84%,rgba(141,138,112,.65) 0 8%,transparent 9%),
+    radial-gradient(ellipse at 60% 66%,rgba(141,138,112,.55) 0 8%,transparent 9%),
+    radial-gradient(ellipse at 38% 48%,rgba(141,138,112,.48) 0 8%,transparent 9%),
+    linear-gradient(74deg,transparent 48%,rgba(141,138,112,.48) 49% 51%,transparent 52%);
+  pointer-events:none;
+}
+.static-invitation::before{
+  left:22px;
+  bottom:24px;
+  transform:rotate(-22deg);
+}
+.static-invitation::after{
+  right:22px;
+  top:26px;
+  transform:rotate(158deg);
+}
+
+.invite-monogram{
+  margin-bottom:19px;
+  color:#8b744c;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:20px;
+  letter-spacing:.28em;
+  font-weight:500;
+}
+.invite-monogram span{
+  font-style:normal;
+}
+
+.invite-kicker{
+  margin-bottom:22px;
+  color:#766d62;
+  text-transform:uppercase;
+  letter-spacing:.27em;
+  font-size:8px;
+  font-weight:600;
+}
+
+.static-invitation h1{
+  margin:0;
+  color:#3f382e;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(70px,8vw,116px);
+  font-weight:400;
+  letter-spacing:.035em;
+  line-height:.78;
+  white-space:nowrap;
+}
+
+.invite-amp{
+  color:#8b744c;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:normal;
+  font-size:.70em;
+  font-weight:400;
+  vertical-align:.08em;
+  margin:0 .06em;
+}
+
+.invite-rule{
+  width:94px;
+  height:1px;
+  margin:31px auto 22px;
+  background:linear-gradient(90deg,transparent,#9a7d49 22%,#9a7d49 78%,transparent);
+}
+
+.invite-copy{
+  margin:0 0 25px;
+  max-width:320px;
+  color:#51493f;
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:15px;
+  line-height:1.5;
+}
+
+.invite-place{
+  margin-top:20px;
+  color:#554c40;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:8px;
+  font-weight:600;
+}
+
+.invite-date{
+  margin-top:13px;
+  color:#4b4338;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:24px;
+  letter-spacing:.24em;
+  white-space:nowrap;
+}
+
+.invite-small-rule{
+  width:54px;
+  height:1px;
+  margin-top:18px;
+  background:#9a7d49;
+  opacity:.72;
+}
+
+/* Tiny line-drawing venue mark */
+.invite-venue-mark{
+  position:relative;
+  width:112px;
+  height:48px;
+  color:#a28657;
+  opacity:.72;
+}
+.venue-house{
+  position:absolute;
+  left:32px;
+  right:32px;
+  bottom:6px;
+  height:25px;
+  border:1px solid currentColor;
+}
+.venue-roof{
+  position:absolute;
+  left:31px;
+  right:31px;
+  bottom:30px;
+  height:14px;
+  border-left:1px solid currentColor;
+  border-top:1px solid currentColor;
+  border-right:1px solid currentColor;
+  transform:skewX(-36deg) scaleX(.78);
+}
+.venue-wing{
+  position:absolute;
+  bottom:6px;
+  width:31px;
+  height:19px;
+  border:1px solid currentColor;
+}
+.venue-wing.left{left:1px}
+.venue-wing.right{right:1px}
+
+/* Front pocket */
+.static-envelope-pocket{
+  position:absolute;
+  z-index:4;
+  left:2%;
+  right:2%;
+  bottom:0;
+  height:56%;
+  overflow:hidden;
+}
+
+.static-envelope-left,
+.static-envelope-right,
+.static-envelope-bottom{
+  position:absolute;
+  background:#eee9e2;
+  border-top:1px solid rgba(105,87,59,.11);
+}
+
+.static-envelope-left{
+  left:-5%;
+  bottom:-2%;
+  width:63%;
+  height:108%;
+  clip-path:polygon(0 13%,100% 100%,0 100%);
+}
+
+.static-envelope-right{
+  right:-5%;
+  bottom:-2%;
+  width:63%;
+  height:108%;
+  clip-path:polygon(100% 13%,0 100%,100% 100%);
+}
+
+.static-envelope-bottom{
+  left:11%;
+  right:11%;
+  bottom:-22%;
+  height:85%;
+  transform:rotate(45deg);
+  transform-origin:center;
+  background:#eae4db;
+  border:1px solid rgba(105,87,59,.09);
+}
+
+.envelope-botanical-mark{
+  position:absolute;
+  z-index:8;
+  left:50%;
+  bottom:12%;
+  width:62px;
+  height:36px;
+  transform:translateX(-50%);
+  opacity:.42;
+}
+.envelope-botanical-mark::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:1px;
+  height:32px;
+  background:#8d8a70;
+  transform:rotate(-6deg);
+}
+.envelope-botanical-mark i{
+  position:absolute;
+  width:15px;
+  height:7px;
+  border:1px solid #8d8a70;
+  border-radius:100% 0 100% 0;
+}
+.envelope-botanical-mark i:nth-child(1){left:12px;top:18px;transform:rotate(22deg)}
+.envelope-botanical-mark i:nth-child(2){left:17px;top:7px;transform:rotate(40deg)}
+.envelope-botanical-mark i:nth-child(3){right:10px;top:15px;transform:rotate(198deg)}
+.envelope-botanical-mark i:nth-child(4){right:17px;top:4px;transform:rotate(218deg)}
+.envelope-botanical-mark i:nth-child(5){left:25px;top:0;transform:rotate(52deg)}
+
+/* Abstract botanical corner sprigs around the scene */
+.stationery-florals{
+  position:absolute;
+  z-index:1;
+  width:190px;
+  height:280px;
+  opacity:.45;
+  pointer-events:none;
+}
+.stationery-florals::before{
+  content:'';
+  position:absolute;
+  width:1px;
+  height:250px;
+  left:48%;
+  top:10px;
+  background:#85836d;
+  transform:rotate(18deg);
+}
+.stationery-florals span{
+  position:absolute;
+  width:47px;
+  height:18px;
+  border:1px solid #85836d;
+  border-radius:100% 0 100% 0;
+}
+.stationery-florals-left{left:-5px;bottom:4%}
+.stationery-florals-right{right:-8px;top:13%;transform:scaleX(-1) rotate(-5deg)}
+.stationery-florals span:nth-child(1){left:40px;top:35px;transform:rotate(23deg)}
+.stationery-florals span:nth-child(2){left:74px;top:76px;transform:rotate(197deg)}
+.stationery-florals span:nth-child(3){left:32px;top:121px;transform:rotate(36deg)}
+.stationery-florals span:nth-child(4){left:83px;top:161px;transform:rotate(205deg)}
+.stationery-florals span:nth-child(5){left:48px;top:211px;transform:rotate(31deg)}
+
+.hero-scroll{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  z-index:10;
+  transform:translateX(-50%);
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(104,85,56,.18);
+  background:rgba(248,245,240,.92);
+  color:#8b744c;
+  text-decoration:none;
+  font-size:20px;
+  box-shadow:0 8px 24px rgba(81,67,47,.07);
+}
+
+.hero-scroll:hover{
+  border-color:#9a7d49;
+  color:#6f5e42;
+}
+
+#welcome{
+  scroll-margin-top:95px;
+}
+
+/* Header ampersand and invitation ampersand are intentionally the same treatment */
+.brand,
+.static-invitation h1{
+  font-family:'Cormorant Garamond',Georgia,serif;
+}
+
+@media(max-width:900px){
+  .stationery-scene{
+    min-height:auto;
+    padding:34px 18px 56px;
+  }
+  .static-envelope{
+    width:min(900px,96vw);
+  }
+  .static-invitation{
+    width:67vw;
+    min-height:73%;
+    padding:42px 35px 54px;
+  }
+  .stationery-florals{
+    opacity:.28;
+    transform:scale(.76);
+  }
+  .stationery-florals-right{
+    transform:scale(-.76,.76) rotate(-5deg);
+  }
+}
+
+@media(max-width:650px){
+  .home-stationery-hero{
+    min-height:auto;
+  }
+
+  .stationery-scene{
+    min-height:auto;
+    padding:28px 8px 54px;
+  }
+
+  .static-envelope{
+    width:98vw;
+    aspect-ratio:1.10/1;
+    margin-top:8px;
+  }
+
+  .static-envelope-back{
+    left:2%;
+    right:2%;
+    top:12%;
+  }
+
+  .static-invitation{
+    top:1%;
+    width:79vw;
+    min-height:78%;
+    padding:34px 22px 45px;
+  }
+
+  .invite-monogram{
+    font-size:16px;
+    margin-bottom:12px;
+  }
+
+  .invite-kicker{
+    margin-bottom:13px;
+    font-size:7px;
+    letter-spacing:.20em;
+  }
+
+  .static-invitation h1{
+    font-size:clamp(49px,14vw,70px);
+    white-space:normal;
+    line-height:.86;
+  }
+
+  .invite-amp{
+    font-size:.72em;
+  }
+
+  .invite-rule{
+    margin:21px auto 16px;
+    width:70px;
+  }
+
+  .invite-copy{
+    margin-bottom:16px;
+    font-size:11px;
+  }
+
+  .invite-venue-mark{
+    width:88px;
+    height:39px;
+    transform:scale(.78);
+  }
+
+  .invite-place{
+    margin-top:9px;
+    letter-spacing:.12em;
+    font-size:6.5px;
+  }
+
+  .invite-date{
+    margin-top:8px;
+    font-size:18px;
+    letter-spacing:.17em;
+  }
+
+  .stationery-florals{
+    display:none;
+  }
+
+  .static-envelope-pocket{
+    height:55%;
+  }
+
+  .hero-scroll{
+    width:42px;
+    height:42px;
+    bottom:10px;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL HERO PROPORTION FIX
+   Matches approved wide stationery composition.
+   ========================================================= */
+
+.home-stationery-hero{
+  min-height:0 !important;
+  height:auto !important;
+  padding:0 !important;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(210,199,181,.26), transparent 34%),
+    linear-gradient(180deg,#f8f5f0 0%,#f2ede5 100%) !important;
+}
+
+.stationery-scene{
+  min-height:0 !important;
+  height:560px !important;
+  max-width:1440px;
+  padding:18px 24px 34px !important;
+  display:flex !important;
+  justify-content:center;
+  align-items:flex-start !important;
+}
+
+.static-envelope{
+  width:min(860px,78vw) !important;
+  height:475px !important;
+  aspect-ratio:auto !important;
+  margin-top:18px;
+  filter:drop-shadow(0 22px 34px rgba(79,66,47,.11)) !important;
+}
+
+.static-envelope-back{
+  left:2.5% !important;
+  right:2.5% !important;
+  top:10% !important;
+  bottom:4% !important;
+  border-radius:48% 48% 2% 2% / 18% 18% 2% 2% !important;
+  background:
+    linear-gradient(180deg,#d9cebd 0%,#e7dfd3 42%,#e9e2d9 100%) !important;
+}
+
+.static-envelope-back::before{
+  left:7% !important;
+  right:7% !important;
+  height:34% !important;
+  background:linear-gradient(180deg,#cfc2af 0%,#ded3c3 100%) !important;
+}
+
+/* Smaller card, comfortably tucked into envelope */
+.static-invitation{
+  top:0 !important;
+  width:465px !important;
+  height:405px !important;
+  min-height:0 !important;
+  padding:28px 42px 42px !important;
+  justify-content:flex-start !important;
+  background:#faf7f2 !important;
+  border:1px solid rgba(154,125,73,.42) !important;
+  outline:1px solid rgba(154,125,73,.16) !important;
+  outline-offset:-10px !important;
+  box-shadow:0 14px 24px rgba(76,62,44,.08) !important;
+}
+
+.static-invitation::before,
+.static-invitation::after{
+  width:52px !important;
+  height:78px !important;
+  opacity:.30 !important;
+}
+
+.invite-monogram{
+  margin:3px 0 12px !important;
+  font-size:13px !important;
+  letter-spacing:.25em !important;
+}
+
+.invite-kicker{
+  margin:0 0 15px !important;
+  font-size:6px !important;
+  letter-spacing:.26em !important;
+}
+
+/* JO / & / GARY: restrained and stacked */
+.static-invitation h1{
+  display:flex !important;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+  margin:0 !important;
+  font-size:48px !important;
+  line-height:.78 !important;
+  letter-spacing:.09em !important;
+  white-space:normal !important;
+  text-transform:uppercase;
+  font-weight:400 !important;
+}
+
+.static-invitation h1 > span{
+  display:block;
+}
+
+.static-invitation h1 .invite-amp{
+  margin:6px 0 5px !important;
+  color:#8b744c !important;
+  font-family:'Cormorant Garamond',Georgia,serif !important;
+  font-size:22px !important;
+  font-style:normal !important;
+  line-height:1 !important;
+  letter-spacing:0 !important;
+  text-transform:none;
+}
+
+.invite-rule{
+  width:58px !important;
+  margin:16px auto 12px !important;
+}
+
+.invite-copy{
+  max-width:250px !important;
+  margin:0 0 10px !important;
+  font-size:8px !important;
+  line-height:1.45 !important;
+  letter-spacing:.22em !important;
+}
+
+.invite-venue-mark{
+  width:72px !important;
+  height:29px !important;
+  transform:scale(.68);
+  transform-origin:center top;
+  margin-top:-1px;
+  margin-bottom:-8px;
+}
+
+.invite-place{
+  margin-top:7px !important;
+  font-size:5.8px !important;
+  letter-spacing:.17em !important;
+}
+
+.invite-date{
+  margin-top:8px !important;
+  font-size:15px !important;
+  letter-spacing:.22em !important;
+}
+
+.invite-small-rule{
+  width:34px !important;
+  margin-top:9px !important;
+}
+
+/* Pocket only occupies lower part, so invitation remains readable */
+.static-envelope-pocket{
+  left:1.5% !important;
+  right:1.5% !important;
+  bottom:0 !important;
+  height:43% !important;
+  overflow:hidden !important;
+}
+
+.static-envelope-left,
+.static-envelope-right{
+  background:#eee8df !important;
+}
+
+.static-envelope-left{
+  width:58% !important;
+  height:118% !important;
+  left:-2% !important;
+  clip-path:polygon(0 2%,100% 100%,0 100%) !important;
+}
+
+.static-envelope-right{
+  width:58% !important;
+  height:118% !important;
+  right:-2% !important;
+  clip-path:polygon(100% 2%,0 100%,100% 100%) !important;
+}
+
+.static-envelope-bottom{
+  left:25% !important;
+  right:25% !important;
+  bottom:-64% !important;
+  height:130% !important;
+  background:#ece6dd !important;
+}
+
+.envelope-botanical-mark{
+  bottom:3% !important;
+  opacity:.32 !important;
+}
+
+/* Botanicals sit around the envelope rather than over it */
+.stationery-florals{
+  width:150px !important;
+  height:220px !important;
+  opacity:.30 !important;
+}
+.stationery-florals-left{
+  left:2.5% !important;
+  bottom:4% !important;
+}
+.stationery-florals-right{
+  right:2.5% !important;
+  top:9% !important;
+}
+
+/* Soft "fabric" sweep at right, like target reference */
+.stationery-scene::after{
+  right:-7% !important;
+  top:-4% !important;
+  width:32% !important;
+  height:96% !important;
+  opacity:.20 !important;
+}
+
+.hero-scroll{
+  bottom:11px !important;
+  width:40px !important;
+  height:40px !important;
+  font-size:17px !important;
+}
+
+/* Home navigation closer to target proportions */
+.nav{
+  min-height:68px;
+}
+.nav-inner{
+  min-height:68px;
+  max-width:1240px;
+}
+.brand{
+  font-size:22px;
+  letter-spacing:.12em;
+}
+.brand::after{
+  font-size:7px;
+  margin-top:3px;
+}
+.links{
+  gap:27px;
+}
+.links a{
+  font-size:10px;
+  letter-spacing:.15em;
+}
+
+/* Tablet */
+@media(max-width:900px){
+  .stationery-scene{
+    height:520px !important;
+    padding:16px 14px 32px !important;
+  }
+  .static-envelope{
+    width:min(800px,92vw) !important;
+    height:445px !important;
+  }
+  .static-invitation{
+    width:430px !important;
+    height:380px !important;
+    padding:26px 36px 38px !important;
+  }
+}
+
+/* Phone: preserve proportions, don't let it become giant */
+@media(max-width:650px){
+  .stationery-scene{
+    height:430px !important;
+    padding:10px 4px 28px !important;
+  }
+
+  .static-envelope{
+    width:98vw !important;
+    height:390px !important;
+    margin-top:4px !important;
+  }
+
+  .static-invitation{
+    top:2px !important;
+    width:69vw !important;
+    height:335px !important;
+    padding:22px 18px 32px !important;
+  }
+
+  .invite-monogram{
+    margin-bottom:8px !important;
+    font-size:10px !important;
+  }
+
+  .invite-kicker{
+    margin-bottom:11px !important;
+    font-size:5px !important;
+  }
+
+  .static-invitation h1{
+    font-size:38px !important;
+  }
+
+  .static-invitation h1 .invite-amp{
+    font-size:18px !important;
+    margin:4px 0 !important;
+  }
+
+  .invite-rule{
+    margin:12px auto 9px !important;
+  }
+
+  .invite-copy{
+    font-size:6.4px !important;
+    margin-bottom:6px !important;
+  }
+
+  .invite-venue-mark{
+    transform:scale(.52);
+    margin-bottom:-13px;
+  }
+
+  .invite-place{
+    font-size:4.8px !important;
+    margin-top:3px !important;
+  }
+
+  .invite-date{
+    font-size:12px !important;
+    margin-top:6px !important;
+  }
+
+  .static-envelope-pocket{
+    height:41% !important;
+  }
+
+  .stationery-florals{
+    display:block !important;
+    transform:scale(.46);
+  }
+
+  .stationery-florals-left{
+    left:-45px !important;
+    bottom:-8px !important;
+  }
+
+  .stationery-florals-right{
+    right:-45px !important;
+    top:7px !important;
+    transform:scale(-.46,.46) rotate(-5deg);
+  }
+
+  .hero-scroll{
+    bottom:5px !important;
+    width:36px !important;
+    height:36px !important;
+  }
+}
+
+
+/* =========================================================
+   REAL STATIONERY HERO
+   Uses approved photographic-style artwork for the scene.
+   Only the invitation text and front pocket remain live/CSS.
+   ========================================================= */
+
+.home-stationery-hero,
+.static-envelope,
+.stationery-scene{
+  display:none !important;
+}
+
+.real-stationery-hero{
+  position:relative;
+  overflow:hidden;
+  background:#f5f0e8;
+  border-bottom:1px solid rgba(82,70,50,.12);
+}
+
+.real-stationery-scene{
+  position:relative;
+  width:100%;
+  height:520px;
+  max-width:1536px;
+  margin:0 auto;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(248,245,239,.03),rgba(248,245,239,.03)),
+    url('invitation-scene.webp') center center / cover no-repeat;
+}
+
+/* Blank live invitation laid over the generated card area */
+.real-invitation{
+  position:absolute;
+  z-index:3;
+  top:18px;
+  left:50%;
+  width:455px;
+  height:402px;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:28px 38px 42px;
+  color:#40392f;
+  background:
+    radial-gradient(circle at 20% 14%,rgba(145,139,115,.035),transparent 28%),
+    #f7f2ea;
+  border:1px solid rgba(154,125,73,.42);
+  outline:1px solid rgba(154,125,73,.15);
+  outline-offset:-10px;
+  box-shadow:0 12px 18px rgba(77,62,42,.07);
+}
+
+.real-invitation::before,
+.real-invitation::after{
+  content:'';
+  position:absolute;
+  width:54px;
+  height:82px;
+  opacity:.28;
+  background:
+    radial-gradient(ellipse at 40% 85%,rgba(132,134,104,.8) 0 8%,transparent 9%),
+    radial-gradient(ellipse at 61% 65%,rgba(132,134,104,.7) 0 8%,transparent 9%),
+    radial-gradient(ellipse at 38% 45%,rgba(132,134,104,.58) 0 8%,transparent 9%),
+    linear-gradient(73deg,transparent 48%,rgba(132,134,104,.56) 49% 51%,transparent 52%);
+}
+.real-invitation::before{
+  left:20px;
+  bottom:25px;
+  transform:rotate(-24deg);
+}
+.real-invitation::after{
+  right:20px;
+  top:24px;
+  transform:rotate(157deg);
+}
+
+.real-monogram{
+  margin-top:3px;
+  margin-bottom:12px;
+  color:#8d754d;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.26em;
+}
+.real-monogram span{
+  color:#8d754d;
+  font-style:normal;
+}
+
+.real-kicker{
+  margin-bottom:14px;
+  color:#746b60;
+  text-transform:uppercase;
+  font-size:6px;
+  font-weight:600;
+  letter-spacing:.27em;
+}
+
+.real-invitation h1{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin:0;
+  color:#40382f;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:48px;
+  font-weight:400;
+  line-height:.78;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.real-invitation h1 > span{
+  display:block;
+}
+.real-invitation .real-amp{
+  margin:5px 0 4px;
+  color:#8d754d;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:22px;
+  font-style:normal;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:0;
+  text-transform:none;
+}
+
+.real-invite-rule{
+  width:58px;
+  height:1px;
+  margin:15px auto 11px;
+  background:linear-gradient(90deg,transparent,#a28656 25%,#a28656 75%,transparent);
+}
+
+.real-copy{
+  margin:0 0 7px;
+  max-width:245px;
+  color:#51493e;
+  text-transform:uppercase;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:8px;
+  line-height:1.45;
+  letter-spacing:.22em;
+}
+
+.real-venue-mark{
+  position:relative;
+  width:78px;
+  height:29px;
+  margin-top:0;
+  color:#a08454;
+  opacity:.70;
+}
+.real-house-main{
+  position:absolute;
+  left:24px;
+  right:24px;
+  bottom:2px;
+  height:18px;
+  border:1px solid currentColor;
+}
+.real-house-roof{
+  position:absolute;
+  left:23px;
+  right:23px;
+  bottom:19px;
+  height:10px;
+  border-left:1px solid currentColor;
+  border-top:1px solid currentColor;
+  border-right:1px solid currentColor;
+  transform:skewX(-35deg) scaleX(.78);
+}
+.real-house-wing{
+  position:absolute;
+  bottom:2px;
+  width:23px;
+  height:14px;
+  border:1px solid currentColor;
+}
+.real-house-wing.left{left:1px}
+.real-house-wing.right{right:1px}
+
+.real-place{
+  margin-top:5px;
+  color:#534b40;
+  text-transform:uppercase;
+  font-size:5.8px;
+  font-weight:600;
+  letter-spacing:.17em;
+}
+
+.real-date{
+  margin-top:8px;
+  color:#4b4338;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:15px;
+  letter-spacing:.22em;
+  white-space:nowrap;
+}
+
+.real-small-rule{
+  width:34px;
+  height:1px;
+  margin-top:8px;
+  background:#9a7d49;
+  opacity:.72;
+}
+
+/* Front pocket placed over live card to make it genuinely look tucked in */
+.real-envelope-pocket{
+  position:absolute;
+  z-index:5;
+  left:50%;
+  bottom:0;
+  width:900px;
+  height:225px;
+  transform:translateX(-50%);
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.real-pocket-left,
+.real-pocket-right,
+.real-pocket-centre{
+  position:absolute;
+  background:#eee8df;
+  border-top:1px solid rgba(102,83,56,.10);
+}
+
+.real-pocket-left{
+  left:0;
+  bottom:-8px;
+  width:58%;
+  height:235px;
+  clip-path:polygon(0 5%,100% 100%,0 100%);
+}
+
+.real-pocket-right{
+  right:0;
+  bottom:-8px;
+  width:58%;
+  height:235px;
+  clip-path:polygon(100% 5%,0 100%,100% 100%);
+}
+
+.real-pocket-centre{
+  left:292px;
+  bottom:-178px;
+  width:316px;
+  height:316px;
+  transform:rotate(45deg);
+  background:#ebe4da;
+  border:1px solid rgba(102,83,56,.08);
+}
+
+.real-pocket-sprig{
+  position:absolute;
+  z-index:8;
+  left:50%;
+  bottom:22px;
+  width:56px;
+  height:32px;
+  transform:translateX(-50%);
+  opacity:.34;
+}
+.real-pocket-sprig::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:1px;
+  height:28px;
+  background:#8d8a70;
+  transform:rotate(-6deg);
+}
+.real-pocket-sprig i{
+  position:absolute;
+  width:13px;
+  height:6px;
+  border:1px solid #8d8a70;
+  border-radius:100% 0 100% 0;
+}
+.real-pocket-sprig i:nth-child(1){left:11px;top:14px;transform:rotate(22deg)}
+.real-pocket-sprig i:nth-child(2){left:17px;top:4px;transform:rotate(40deg)}
+.real-pocket-sprig i:nth-child(3){right:10px;top:12px;transform:rotate(198deg)}
+.real-pocket-sprig i:nth-child(4){right:16px;top:2px;transform:rotate(218deg)}
+
+.real-hero-scroll{
+  position:absolute;
+  z-index:9;
+  left:50%;
+  bottom:9px;
+  transform:translateX(-50%);
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(104,85,56,.18);
+  background:rgba(249,246,241,.93);
+  color:#8b744c;
+  text-decoration:none;
+  font-size:16px;
+  box-shadow:0 7px 20px rgba(81,67,47,.06);
+}
+
+.real-hero-scroll:hover{
+  color:#6e5e43;
+  border-color:#9a7d49;
+}
+
+/* Keep the live header/navigation, like the approved image */
+.nav{
+  background:rgba(248,245,239,.98);
+}
+.nav-inner{
+  max-width:1240px;
+  min-height:68px;
+}
+.brand{
+  font-size:22px;
+  letter-spacing:.12em;
+}
+.brand::after{
+  font-size:7px;
+}
+.links{
+  gap:27px;
+}
+.links a{
+  font-size:10px;
+  letter-spacing:.15em;
+}
+
+/* Tablet */
+@media(max-width:1000px){
+  .real-stationery-scene{
+    height:500px;
+    background-size:auto 100%;
+  }
+
+  .real-invitation{
+    width:425px;
+    height:380px;
+    padding:25px 34px 38px;
+  }
+
+  .real-envelope-pocket{
+    width:820px;
+    height:215px;
+  }
+}
+
+/* Mobile gets its own crop rather than shrinking desktop scene to a postage stamp */
+@media(max-width:650px){
+  .real-stationery-scene{
+    height:430px;
+    background-position:center center;
+    background-size:auto 100%;
+  }
+
+  .real-invitation{
+    top:12px;
+    width:72vw;
+    height:330px;
+    padding:20px 18px 30px;
+  }
+
+  .real-monogram{
+    font-size:10px;
+    margin-bottom:8px;
+  }
+
+  .real-kicker{
+    margin-bottom:10px;
+    font-size:5px;
+  }
+
+  .real-invitation h1{
+    font-size:37px;
+  }
+
+  .real-invitation .real-amp{
+    font-size:17px;
+    margin:4px 0;
+  }
+
+  .real-invite-rule{
+    width:48px;
+    margin:10px auto 8px;
+  }
+
+  .real-copy{
+    font-size:6px;
+    margin-bottom:3px;
+  }
+
+  .real-venue-mark{
+    transform:scale(.72);
+    margin-top:-2px;
+    margin-bottom:-3px;
+  }
+
+  .real-place{
+    margin-top:1px;
+    font-size:4.7px;
+  }
+
+  .real-date{
+    margin-top:5px;
+    font-size:12px;
+  }
+
+  .real-envelope-pocket{
+    width:100vw;
+    height:182px;
+  }
+
+  .real-pocket-left,
+  .real-pocket-right{
+    height:195px;
+  }
+
+  .real-pocket-centre{
+    left:calc(50% - 120px);
+    width:240px;
+    height:240px;
+    bottom:-150px;
+  }
+
+  .real-pocket-sprig{
+    bottom:12px;
+    transform:translateX(-50%) scale(.8);
+  }
+
+  .real-hero-scroll{
+    bottom:5px;
+    width:34px;
+    height:34px;
+  }
+}
+
+
+/* =========================================================
+   REAL HERO FINAL ALIGNMENT
+   Use the artwork's envelope/front pocket, not duplicate CSS.
+   ========================================================= */
+
+.real-stationery-hero{
+  width:100%;
+  background:#f4efe7 !important;
+}
+
+.real-stationery-scene{
+  width:100% !important;
+  max-width:none !important;
+  height:520px !important;
+  background-size:cover !important;
+  background-position:center 47% !important;
+  background-color:#f4efe7 !important;
+}
+
+/* The artwork already has the envelope pocket.
+   Remove the duplicate CSS pocket entirely. */
+.real-envelope-pocket{
+  display:none !important;
+}
+
+/* Cover the printed invitation area cleanly, without looking like
+   a second card placed on top of it. */
+.real-invitation{
+  top:17px !important;
+  width:452px !important;
+  height:397px !important;
+  padding:27px 38px 38px !important;
+
+  background:#f6f1e9 !important;
+  border:1px solid rgba(155,132,91,.25) !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+
+/* Keep botanical corners subtle so they blend with the artwork. */
+.real-invitation::before,
+.real-invitation::after{
+  opacity:.18 !important;
+}
+
+/* Finer, more reference-like type proportions */
+.real-monogram{
+  margin-top:1px !important;
+  margin-bottom:10px !important;
+  font-size:11px !important;
+}
+
+.real-kicker{
+  margin-bottom:13px !important;
+  font-size:5.5px !important;
+  letter-spacing:.25em !important;
+}
+
+.real-invitation h1{
+  font-size:43px !important;
+  line-height:.76 !important;
+  letter-spacing:.10em !important;
+}
+
+.real-invitation .real-amp{
+  font-size:19px !important;
+  margin:4px 0 3px !important;
+}
+
+.real-invite-rule{
+  width:52px !important;
+  margin:13px auto 9px !important;
+}
+
+.real-copy{
+  font-size:7px !important;
+  margin-bottom:4px !important;
+}
+
+.real-venue-mark{
+  transform:scale(.62) !important;
+  transform-origin:center top !important;
+  margin-top:-1px !important;
+  margin-bottom:-8px !important;
+}
+
+.real-place{
+  margin-top:2px !important;
+  font-size:5px !important;
+  letter-spacing:.15em !important;
+}
+
+.real-date{
+  margin-top:6px !important;
+  font-size:13px !important;
+}
+
+.real-small-rule{
+  width:30px !important;
+  margin-top:7px !important;
+}
+
+.real-hero-scroll{
+  bottom:9px !important;
+}
+
+/* Keep the scene wide and clean on large screens */
+@media(min-width:1400px){
+  .real-stationery-scene{
+    height:535px !important;
+    background-position:center 46% !important;
+  }
+
+  .real-invitation{
+    top:20px !important;
+    width:462px !important;
+    height:402px !important;
+  }
+}
+
+/* Tablet */
+@media(max-width:1000px){
+  .real-stationery-scene{
+    height:485px !important;
+    background-size:cover !important;
+    background-position:center 47% !important;
+  }
+
+  .real-invitation{
+    top:14px !important;
+    width:410px !important;
+    height:365px !important;
+    padding:24px 32px 34px !important;
+  }
+}
+
+/* Phone */
+@media(max-width:650px){
+  .real-stationery-scene{
+    height:405px !important;
+    background-size:auto 100% !important;
+    background-position:center center !important;
+  }
+
+  .real-invitation{
+    top:12px !important;
+    width:70vw !important;
+    height:305px !important;
+    padding:18px 16px 26px !important;
+  }
+
+  .real-invitation h1{
+    font-size:34px !important;
+  }
+
+  .real-invitation .real-amp{
+    font-size:16px !important;
+  }
+
+  .real-copy{
+    font-size:5.7px !important;
+  }
+
+  .real-place{
+    font-size:4.5px !important;
+  }
+
+  .real-date{
+    font-size:11px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL APPROVED INVITATION HERO
+   Single finished artwork. No duplicate invitation overlay.
+   ========================================================= */
+
+.real-stationery-hero,
+.real-stationery-scene,
+.real-invitation,
+.real-envelope-pocket{
+  display:none !important;
+}
+
+.final-invitation-hero{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  background:#f5f0e8;
+  border-bottom:1px solid rgba(82,70,50,.12);
+}
+
+.final-invitation-hero picture{
+  display:block;
+  width:100%;
+}
+
+.final-invitation-hero-image{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:704px;
+  object-fit:cover;
+  object-position:center center;
+}
+
+.final-hero-scroll{
+  position:absolute;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(104,85,56,.18);
+  background:rgba(249,246,241,.92);
+  color:#8b744c;
+  text-decoration:none;
+  font-size:17px;
+  box-shadow:0 7px 20px rgba(81,67,47,.06);
+}
+
+.final-hero-scroll:hover{
+  color:#6e5e43;
+  border-color:#9a7d49;
+}
+
+/* Keep header elegant and visually matched to the approved hero */
+.nav{
+  background:rgba(248,245,239,.98) !important;
+}
+
+@media(max-width:900px){
+  .final-invitation-hero-image{
+    height:520px;
+    max-height:none;
+    object-fit:cover;
+    object-position:center center;
+  }
+}
+
+@media(max-width:650px){
+  .final-invitation-hero-image{
+    height:430px;
+    max-height:none;
+    object-fit:cover;
+    object-position:center center;
+  }
+
+  .final-hero-scroll{
+    width:34px;
+    height:34px;
+    bottom:7px;
+    font-size:15px;
+  }
+}
+
+
+/* =========================================================
+   INDEX PAGE POLISH
+   ========================================================= */
+
+/* Readable date under Jo & Gary in the top-left brand */
+.brand{
+  display:flex !important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  line-height:1 !important;
+  text-decoration:none;
+}
+.brand span{
+  display:block;
+}
+.brand small{
+  display:block;
+  margin-top:7px;
+  color:#8d754d;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:11px;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.22em;
+}
+.brand::after{
+  display:none !important;
+}
+
+/* Centre only the Our Day heading while leaving the two cards readable */
+.our-day-section > h2{
+  text-align:center;
+}
+.our-day-section > h2::after{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Replace the old status-notice look with a proper stationery-style closing panel */
+.date-confirmed-section{
+  padding-top:12px;
+  padding-bottom:70px;
+}
+
+.date-confirmed-card{
+  position:relative;
+  max-width:920px;
+  margin:0 auto;
+  padding:52px 34px 48px;
+  text-align:center;
+  background:rgba(255,253,249,.46);
+  border:1px solid rgba(154,125,73,.20);
+}
+
+.date-confirmed-card::before,
+.date-confirmed-card::after{
+  content:'';
+  position:absolute;
+  width:36px;
+  height:36px;
+  opacity:.34;
+  border-color:#9a7d49;
+}
+
+.date-confirmed-card::before{
+  top:12px;
+  left:12px;
+  border-top:1px solid;
+  border-left:1px solid;
+}
+
+.date-confirmed-card::after{
+  right:12px;
+  bottom:12px;
+  border-right:1px solid;
+  border-bottom:1px solid;
+}
+
+.date-confirmed-eyebrow{
+  display:block;
+  margin-bottom:14px;
+  color:#93794f;
+  text-transform:uppercase;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.28em;
+}
+
+.date-confirmed-card h2{
+  margin:0;
+  color:#4b4237;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(32px,4vw,48px);
+  font-weight:400;
+  letter-spacing:.02em;
+}
+
+.date-confirmed-card h2::after{
+  display:none !important;
+}
+
+.date-confirmed-rule{
+  width:58px;
+  height:1px;
+  margin:19px auto 17px;
+  background:#9a7d49;
+  opacity:.72;
+}
+
+.date-confirmed-card p{
+  margin:0 0 11px;
+  color:#5f5548;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:19px;
+  letter-spacing:.06em;
+}
+
+.date-confirmed-small{
+  color:#81776b;
+  font-size:13px;
+  line-height:1.7;
+}
+
+@media(max-width:650px){
+  .brand small{
+    margin-top:5px;
+    font-size:9px;
+    letter-spacing:.17em;
+  }
+
+  .date-confirmed-section{
+    padding-bottom:48px;
+  }
+
+  .date-confirmed-card{
+    padding:40px 22px 37px;
+  }
+
+  .date-confirmed-card p{
+    font-size:17px;
+  }
+}
