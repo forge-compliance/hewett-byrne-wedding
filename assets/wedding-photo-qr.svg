@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg width='41mm' height='41mm' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'>
+<rect x='0' y='0' width='41mm' height='41mm' fill='white'/>
+<path d='M4 4h9v9H4z M6 6v5h5V6z M8 8h1v1H8z M28 4h9v9h-9z M30 6v5h5V6z M32 8h1v1h-1z M4 28h9v9H4z M6 30v5h5v-5z M8 32h1v1H8z M16 4h3v3h-3z M20 4h2v2h-2z M15 9h3v3h-3z M20 8h3v2h-3z M24 4h2v5h-2z M16 14h2v4h-2z M20 13h4v3h-4z M25 12h3v3h-3z M30 16h3v3h-3z M35 15h2v4h-2z M14 20h4v3h-4z M19 18h2v5h-2z M23 18h4v3h-4z M29 21h3v3h-3z M34 21h3v2h-3z M15 25h3v3h-3z M20 25h2v2h-2z M24 24h3v4h-3z M28 26h2v4h-2z M33 25h4v3h-4z M16 31h3v3h-3z M21 30h3v3h-3z M25 32h2v5h-2z M30 31h3v3h-3z M35 32h2v5h-2z' fill='black'/>
+</svg>
