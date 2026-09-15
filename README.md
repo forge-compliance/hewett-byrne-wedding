@@ -1,4 +1,4 @@
-# Hewett-Byrne Wedding website
+ # Hewett-Byrne Wedding website
 
 Ready for GitHub Pages and the custom domain:
 
