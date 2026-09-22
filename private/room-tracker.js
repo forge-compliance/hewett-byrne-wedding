@@ -14,18 +14,19 @@
    guests=gs||[];rooms=rs||[];render();
  };
  const render=()=>{
-   const booked=guests.filter(g=>g.room_required),assigned=booked.filter(g=>g.room_id),unassigned=booked.filter(g=>!g.room_id);
+   const booked=guests.filter(g=>g.room_required),assigned=booked.filter(g=>g.room_id),unassigned=booked.filter(g=>!g.room_id),accepted=guests.filter(g=>g.rsvp_status==='Accepted');
    document.getElementById('roomTotal').textContent=rooms.length;
    document.getElementById('roomAssigned').textContent=assigned.length;
    document.getElementById('roomNeeded').textContent=unassigned.length;
-   document.getElementById('roomGuests').textContent=guests.filter(g=>g.rsvp_status==='Accepted').length;
+   document.getElementById('roomGuests').textContent=accepted.length;
+   const guestMetric=document.getElementById('expectedDayGuests');if(guestMetric)guestMetric.textContent=guests.length;
    const roomCards=rooms.map(r=>{
      const occupants=booked.filter(g=>g.room_id===r.id);
      return `<div class="room-inventory-card"><div><strong>${esc(r.room_name)}</strong><span>${esc(r.room_type||'Bedroom')} · sleeps ${esc(r.capacity||'—')}</span></div><div class="room-occupants">${occupants.length?occupants.map(g=>`<span class="room-occupant">${esc([g.first_name,g.last_name].filter(Boolean).join(' '))}</span>`).join(''):'<span class="room-empty">Available</span>'}</div><div class="room-capacity">${occupants.length}/${esc(r.capacity||'?')}</div></div>`;
    }).join('');
    const shown=guests.filter(g=>g.room_required || g.rsvp_status==='Accepted');
    const guestRows=shown.length?shown.map(g=>`<div class="room-row"><div class="room-person"><strong>${esc([g.first_name,g.last_name].filter(Boolean).join(' '))}</strong><span>${esc(g.invitation_group||'')} · ${esc(g.guest_type||'')}</span></div><label class="room-check"><input type="checkbox" data-room-required="${g.id}" ${g.room_required?'checked':''}> Room</label><select class="room-number" data-room-id="${g.id}"><option value="">Unallocated</option>${rooms.map(r=>`<option value="${r.id}" ${g.room_id===r.id?'selected':''}>${esc(r.room_name)}${r.capacity?` · ${r.capacity} guests`:''}</option>`).join('')}</select><input class="room-notes" data-room-notes="${g.id}" value="${esc(g.room_notes||'')}" placeholder="Sharing with / notes…"><button class="btn light room-save" data-room-save="${g.id}" type="button">Save</button></div>`).join(''):'<p class="small">No accepted guests or room requirements recorded yet.</p>';
-   list.innerHTML=`<div class="room-inventory"><div class="room-list-head"><div><span class="small-label">YOUR ROOM BLOCK</span><h3>Available rooms</h3></div><span class="small">7 rooms currently held</span></div>${roomCards}</div><div class="room-allocation"><div class="room-list-head"><div><span class="small-label">GUEST ALLOCATION</span><h3>Who is staying where</h3></div></div>${guestRows}</div>`;
+   list.innerHTML=`<div class="room-inventory"><div class="room-list-head"><div><span class="small-label">YOUR ROOM BLOCK</span><h3>Available rooms</h3></div><span class="small">${rooms.length} rooms currently held</span></div>${roomCards}</div><div class="room-allocation"><div class="room-list-head"><div><span class="small-label">GUEST ALLOCATION</span><h3>Who is staying where</h3></div></div>${guestRows}</div>`;
  };
  list.addEventListener('change',async e=>{
    const c=e.target.closest('[data-room-required]');
