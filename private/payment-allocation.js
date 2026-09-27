@@ -1,11 +1,24 @@
 (()=>{
+  const legacyInput=document.getElementById('packagePaidAmount');
+  const legacySave=document.getElementById('savePackagePaid');
+  const msg=document.getElementById('costSavedMessage');
+  if(!legacyInput||!legacySave||!window.weddingSupabase)return;
+
+  const card=legacyInput.closest('.card');
+  if(!card)return;
+  const oldGrid=legacyInput.closest('.form-grid');
+  const oldHelp=card.querySelector('p.small');
+  if(oldGrid)oldGrid.style.display='none';
+  if(oldHelp)oldHelp.style.display='none';
+
+  const wrap=document.createElement('div');
+  wrap.innerHTML=`<div class="form-grid"><div class="field"><label for="paymentTarget">Pay against</label><select id="paymentTarget"><option value="">Loading costs…</option></select></div><div class="field"><label for="paymentAmount">Payment amount (£)</label><input id="paymentAmount" type="number" min="0.01" step="0.01" placeholder="0.00"></div><div class="field" style="align-self:end"><button class="btn planner-btn" id="saveAllocatedPayment" type="button">Save payment</button></div><div class="field full"><span id="paymentTargetHint" class="small">Choose the cost this payment should reduce.</span></div></div>`;
+  card.prepend(wrap);
+
   const target=document.getElementById('paymentTarget');
   const amountInput=document.getElementById('paymentAmount');
   const saveBtn=document.getElementById('saveAllocatedPayment');
   const hint=document.getElementById('paymentTargetHint');
-  const msg=document.getElementById('costSavedMessage');
-  if(!target||!amountInput||!saveBtn||!window.weddingSupabase)return;
-
   const BASE_TOTAL=12550;
   const money=v=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:2}).format(Number(v)||0);
   let costs=[],packagePaid=0;
@@ -22,7 +35,6 @@
   }
 
   function updateHint(){
-    if(!hint)return;
     if(target.value==='package'){
       hint.textContent=`Paid ${money(packagePaid)} · remaining ${money(Math.max(0,BASE_TOTAL-packagePaid))}`;return;
     }
