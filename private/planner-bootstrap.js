@@ -15,10 +15,10 @@
       return;
     }
     try{
-      await loadScript('../assets/script.js?v=20260922-planner-auth-1');
+      await loadScript('../assets/script.js?v=20260927-finance-2');
       await loadScript('room-tracker.js?v=20260922-planner-auth-1');
-      await loadScript('package-cost-row.js?v=1');
-      await loadScript('payment-allocation.js?v=2');
+      await loadScript('package-cost-row.js?v=2');
+      await loadScript('payment-allocation.js?v=3');
     }catch(_){
       const roomMsg=document.getElementById('roomTrackerMessage');
       const costMsg=document.getElementById('costSavedMessage');
