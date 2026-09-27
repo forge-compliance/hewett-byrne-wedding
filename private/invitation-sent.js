@@ -19,7 +19,7 @@
   function render(){
     const map=byGroup();
     table.querySelectorAll('tbody tr').forEach(row=>{
-      if(row.dataset.inviteTrackerReady)return;
+      if(row.dataset.inviteTrackerReady==='1')return;
       const cells=row.querySelectorAll('td');
       if(cells.length<4)return;
       const group=(cells[3].querySelector('b')?.textContent||'').trim();
@@ -28,9 +28,7 @@
       row.dataset.inviteTrackerReady='1';
       const wrap=document.createElement('div');
       wrap.style.cssText='display:grid;gap:7px;margin-top:8px;font-size:13px;font-weight:600';
-      wrap.innerHTML=`
-        <label style="display:flex;align-items:center;gap:7px;cursor:pointer"><input type="checkbox" data-save-date-id="${invite.id}" style="width:18px;height:18px;margin:0;accent-color:#6f5a3e" ${hasSaveDate(invite)?'checked':''}><span>Save the date given</span></label>
-        <label style="display:flex;align-items:center;gap:7px;cursor:pointer"><input type="checkbox" data-invitation-id="${invite.id}" style="width:18px;height:18px;margin:0;accent-color:#6f5a3e" ${invite.invitation_sent?'checked':''}><span>Invitation given</span></label>`;
+      wrap.innerHTML=`<label style="display:flex;align-items:center;gap:7px;cursor:pointer"><input type="checkbox" data-save-date-id="${invite.id}" style="width:18px;height:18px;margin:0;accent-color:#6f5a3e" ${hasSaveDate(invite)?'checked':''}><span>Save the date given</span></label><label style="display:flex;align-items:center;gap:7px;cursor:pointer"><input type="checkbox" data-invitation-id="${invite.id}" style="width:18px;height:18px;margin:0;accent-color:#6f5a3e" ${invite.invitation_sent?'checked':''}><span>Invitation given</span></label>`;
       cells[3].appendChild(wrap);
       const saveBox=wrap.querySelector('[data-save-date-id]');
       const inviteBox=wrap.querySelector('[data-invitation-id]');
@@ -55,6 +53,11 @@
       });
     });
   }
-  new MutationObserver(render).observe(table,{childList:true,subtree:true});
   loadInvitations();
+  let attempts=0;
+  const timer=setInterval(()=>{
+    render();
+    attempts++;
+    if(attempts>=20)clearInterval(timer);
+  },750);
 })();
