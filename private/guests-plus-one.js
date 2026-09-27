@@ -10,7 +10,8 @@
      if(row.dataset.plusOneReady)return;
      const first=row.querySelector('td'); if(!first)return;
      const name=(first.textContent||'').trim().split('\n')[0].trim();
-     if(!name||name==='Name')return;
+     if(!name||name==='Name'||name.startsWith('No guests'))return;
+     row.dataset.plusOneReady='1';
      const cell=document.createElement('div');
      cell.style.cssText='margin-top:7px;font-size:13px;';
      cell.innerHTML=`<label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-weight:600"><input type="checkbox" class="existing-plus-one" style="width:18px;height:18px;margin:0;accent-color:#6f5a3e"><span>Give plus one</span></label>`;
@@ -19,7 +20,10 @@
      box.addEventListener('change',async()=>{
        if(!box.checked)return;
        box.disabled=true;
-       const {data,error}=await weddingSupabase.from('wedding_guests').select('id,invitation_group,first_name,last_name,guest_type').or(`first_name.eq.${name.split(' ')[0]},last_name.eq.${name.split(' ').slice(1).join(' ')}`).order('created_at',{ascending:false}).limit(1);
+       const parts=name.split(/\s+/),firstName=parts.shift(),lastName=parts.join(' ');
+       let q=weddingSupabase.from('wedding_guests').select('id,invitation_group,first_name,last_name,guest_type').eq('first_name',firstName).order('created_at',{ascending:false}).limit(1);
+       if(lastName)q=q.eq('last_name',lastName);
+       const {data,error}=await q;
        if(error||!data?.length){box.checked=false;box.disabled=false;alert('Could not find this guest.');return;}
        const host=data[0];
        const {error:insertError}=await weddingSupabase.from('wedding_guests').insert({invitation_group:host.invitation_group,first_name:'Plus One',last_name:host.first_name,guest_type:host.guest_type,adult_child:'Adult',rsvp_status:'Awaiting reply',plus_one:true,notes:`Plus one for ${[host.first_name,host.last_name].filter(Boolean).join(' ')}`});
@@ -28,7 +32,9 @@
      });
    });
  };
- const observer=new MutationObserver(renderPlusOneBoxes); if(table)observer.observe(table,{childList:true,subtree:true}); renderPlusOneBoxes();
+ let tries=0;
+ const timer=setInterval(()=>{renderPlusOneBoxes();if(++tries>=20)clearInterval(timer);},250);
+ renderPlusOneBoxes();
  if(form&&nameEl&&plusOne){
    let pending=null;
    form.addEventListener('submit',()=>{
