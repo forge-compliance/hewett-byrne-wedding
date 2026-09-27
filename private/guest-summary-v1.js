@@ -27,10 +27,10 @@
     const eveningEl=document.getElementById('eveningCount');
     const plusEl=document.getElementById('plusOneCount');
     const totalEl=document.getElementById('totalGuestCount');
-    if(mainEl)mainEl.textContent=`${main} + ${mainPlus}`;
-    if(eveningEl)eveningEl.textContent=`${evening} + ${eveningPlus}`;
+    if(mainEl)mainEl.textContent=`${main} + ${mainPlus} = ${main+mainPlus}`;
+    if(eveningEl)eveningEl.textContent=`${evening} + ${eveningPlus} = ${evening+eveningPlus}`;
     if(plusEl)plusEl.textContent=totalPlus;
-    if(totalEl)totalEl.textContent=`${main+evening} + ${totalPlus}`;
+    if(totalEl)totalEl.textContent=`${main+evening} + ${totalPlus} = ${main+evening+totalPlus}`;
   }
 
   document.addEventListener('change',e=>{
