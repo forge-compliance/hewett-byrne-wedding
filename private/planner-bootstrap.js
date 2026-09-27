@@ -16,7 +16,7 @@
     }
     try{
       await loadScript('../assets/script.js?v=20260927-finance-2');
-      await loadScript('room-tracker.js?v=20260927-room-share-2');
+      await loadScript('room-tracker.js?v=20260927-room-slots-1');
       await loadScript('package-cost-row.js?v=2');
       await loadScript('payment-allocation.js?v=3');
     }catch(_){
